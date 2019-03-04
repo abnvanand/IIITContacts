@@ -1,9 +1,13 @@
 package com.example.iiitcontacts;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import com.example.iiitcontacts.adapters.ContactsAdapter;
 import com.example.iiitcontacts.databinding.ActivityMainBinding;
+import com.example.iiitcontacts.databinding.ItemContactBinding;
 import com.example.iiitcontacts.network.OkHttp;
 import com.example.iiitcontacts.pojo.Contact;
 import com.example.iiitcontacts.util.Constants;
@@ -16,6 +20,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,7 +31,8 @@ import okhttp3.Request;
 import okhttp3.Response;
 import timber.log.Timber;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+        implements ContactsAdapter.OnItemClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Contact> contactList = new ArrayList<>();
 
         ContactsAdapter mAdapter = new ContactsAdapter(contactList);
+        mAdapter.setItemClickListener(this);
         binding.recyclerView.setAdapter(mAdapter);
 
         OkHttpClient client = OkHttp.getInstance();
@@ -67,5 +74,15 @@ public class MainActivity extends AppCompatActivity {
                 runOnUiThread(mAdapter::notifyDataSetChanged);
             }
         });
+    }
+
+    @Override
+    public void onItemClick(@NonNull ItemContactBinding binding) {
+        View view = binding.getRoot();
+        Contact contact = binding.getContact();
+
+        Intent intent = new Intent(view.getContext(), ContactDetailsActivity.class);
+        intent.putExtra(Constants.EXTRA_CONTACT, contact);
+        startActivity(intent);
     }
 }

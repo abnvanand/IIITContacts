@@ -4,7 +4,6 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
-import java.util.List;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
@@ -27,10 +26,10 @@ public class Contact extends BaseObservable implements Serializable {
     private String office;
     @SerializedName("extn")
     @Expose
-    private List<String> extn = null;
+    private String extn;
     @SerializedName("mobile")
     @Expose
-    private List<String> mobile = null;
+    private String mobile;
     @SerializedName("email")
     @Expose
     private String email;
@@ -79,26 +78,22 @@ public class Contact extends BaseObservable implements Serializable {
 
     @Bindable
     public String getExtn() {
-        StringBuilder sb = new StringBuilder();
-        for (String item : extn) {
-            sb.append(item);
-            sb.append("; ");
-        }
-        return sb.toString();
+        return extn;
     }
 
-    public void setExtn(List<String> extn) {
+    public void setExtn(String extn) {
         this.extn = extn;
     }
 
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
     @Bindable
-    public List<String> getMobile() {
+    public String getMobile() {
         return mobile;
     }
 
-    public void setMobile(List<String> mobile) {
-        this.mobile = mobile;
-    }
 
     @Bindable
     public String getEmail() {

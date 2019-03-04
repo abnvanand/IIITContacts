@@ -1,6 +1,7 @@
 package com.example.iiitcontacts.adapters;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.iiitcontacts.BR;
@@ -8,8 +9,11 @@ import com.example.iiitcontacts.R;
 import com.example.iiitcontacts.databinding.ItemContactBinding;
 import com.example.iiitcontacts.pojo.Contact;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,8 +24,9 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
         mDataset = myDataset;
     }
 
+    @NotNull
     @Override
-    public ContactsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ContactsAdapter.ViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
 
         ItemContactBinding binding = DataBindingUtil.inflate(
                 LayoutInflater.from(parent.getContext()),
@@ -29,12 +34,6 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
 
         return new ViewHolder(binding);
 
-//        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-//
-//        ItemContactBinding itemContactBinding =
-//                ItemContactBinding.inflate(inflater, parent, false);
-//
-//        return new ViewHolder(itemContactBinding);
     }
 
     @Override
@@ -52,19 +51,41 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
     }
 
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public void setItemClickListener(OnItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
+    }
+
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
         private final ItemContactBinding binding;
 
 
         public ViewHolder(ItemContactBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
+            this.binding.getRoot().setOnClickListener(onClickListenerItem);
+
         }
+
+        private View.OnClickListener onClickListenerItem = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (itemClickListener == null) return;
+                itemClickListener.onItemClick(binding);
+            }
+        };
+
 
         public void bind(Object object) {
             binding.setVariable(BR.contact, object);
             binding.executePendingBindings();
         }
     }
+
+    public interface OnItemClickListener {
+        void onItemClick(@NonNull ItemContactBinding binding);
+    }
+
+    protected OnItemClickListener itemClickListener;
 
 }
