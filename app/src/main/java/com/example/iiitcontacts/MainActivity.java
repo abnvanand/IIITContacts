@@ -1,8 +1,9 @@
 package com.example.iiitcontacts;
 
 import android.os.Bundle;
-import android.widget.TextView;
 
+import com.example.iiitcontacts.adapters.ContactsAdapter;
+import com.example.iiitcontacts.databinding.ActivityMainBinding;
 import com.example.iiitcontacts.network.OkHttp;
 import com.example.iiitcontacts.pojo.Contact;
 import com.example.iiitcontacts.util.Constants;
@@ -16,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -28,7 +31,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+
+        binding.recyclerView.setHasFixedSize(true);
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        ArrayList<Contact> contactList = new ArrayList<>();
+
+        ContactsAdapter mAdapter = new ContactsAdapter(contactList);
+        binding.recyclerView.setAdapter(mAdapter);
+
         OkHttpClient client = OkHttp.getInstance();
 
         Request request = new Request.Builder()
@@ -39,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
                 Timber.e(e);
-
             }
 
             @Override
@@ -48,13 +58,13 @@ public class MainActivity extends AppCompatActivity {
 
                 Timber.d("Response data: %s", responseString);
 
-                ArrayList<Contact> contactList;
-                contactList = new Gson().fromJson(responseString,
+                ArrayList<Contact> contactList = new Gson().fromJson(responseString,
                         new TypeToken<List<Contact>>() {
                         }.getType());
                 Timber.d("Contactlist: %s", contactList);
-                TextView tv = findViewById(R.id.textView);
-                tv.setText(contactList.get(0).getName());
+
+                mAdapter.setData(contactList);
+                runOnUiThread(mAdapter::notifyDataSetChanged);
             }
         });
     }

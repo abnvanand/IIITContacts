@@ -3,16 +3,22 @@ package com.example.iiitcontacts.pojo;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Contact {
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
+
+public class Contact extends BaseObservable implements Serializable {
 
     @SerializedName("name")
     @Expose
     private String name;
+
     @SerializedName("image")
     @Expose
     private String image;
+
     @SerializedName("designation")
     @Expose
     private String designation;
@@ -35,6 +41,7 @@ public class Contact {
     @Expose
     private String category;
 
+    @Bindable
     public String getName() {
         return name;
     }
@@ -43,6 +50,7 @@ public class Contact {
         this.name = name;
     }
 
+    @Bindable
     public String getImage() {
         return image;
     }
@@ -51,6 +59,7 @@ public class Contact {
         this.image = image;
     }
 
+    @Bindable
     public String getDesignation() {
         return designation;
     }
@@ -59,6 +68,7 @@ public class Contact {
         this.designation = designation;
     }
 
+    @Bindable
     public String getOffice() {
         return office;
     }
@@ -67,14 +77,21 @@ public class Contact {
         this.office = office;
     }
 
-    public List<String> getExtn() {
-        return extn;
+    @Bindable
+    public String getExtn() {
+        StringBuilder sb = new StringBuilder();
+        for (String item : extn) {
+            sb.append(item);
+            sb.append("; ");
+        }
+        return sb.toString();
     }
 
     public void setExtn(List<String> extn) {
         this.extn = extn;
     }
 
+    @Bindable
     public List<String> getMobile() {
         return mobile;
     }
@@ -83,6 +100,7 @@ public class Contact {
         this.mobile = mobile;
     }
 
+    @Bindable
     public String getEmail() {
         return email;
     }
@@ -91,6 +109,7 @@ public class Contact {
         this.email = email;
     }
 
+    @Bindable
     public String getRoomNo() {
         return roomNo;
     }
@@ -99,6 +118,7 @@ public class Contact {
         this.roomNo = roomNo;
     }
 
+    @Bindable
     public String getCategory() {
         return category;
     }
@@ -107,4 +127,18 @@ public class Contact {
         this.category = category;
     }
 
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "name='" + name + '\'' +
+                ", image='" + image + '\'' +
+                ", designation='" + designation + '\'' +
+                ", office='" + office + '\'' +
+                ", extn=" + extn +
+                ", mobile=" + mobile +
+                ", email='" + email + '\'' +
+                ", roomNo='" + roomNo + '\'' +
+                ", category='" + category + '\'' +
+                '}';
+    }
 }
