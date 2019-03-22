@@ -1,18 +1,34 @@
-package com.example.iiitcontacts.pojo;
+package com.example.iiitcontacts.localdb;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Index;
+import androidx.room.PrimaryKey;
 
+@Entity(tableName = "contact_table",
+indices = {@Index(value = "email", unique = true)})
 public class Contact extends BaseObservable implements Serializable {
+    @PrimaryKey(autoGenerate = true)
+    public int uid;
 
     @SerializedName("name")
     @Expose
-    private String name;
+    @ColumnInfo(name = "name")
+    public String name;
+
+
+    public Contact(String name) {
+        this.name = name;
+    }
 
     @SerializedName("image")
     @Expose
@@ -30,9 +46,12 @@ public class Contact extends BaseObservable implements Serializable {
     @SerializedName("mobile")
     @Expose
     private String mobile;
+
     @SerializedName("email")
     @Expose
+    @ColumnInfo(name = "email")
     private String email;
+
     @SerializedName("room_no")
     @Expose
     private String roomNo;
@@ -122,6 +141,7 @@ public class Contact extends BaseObservable implements Serializable {
         this.category = category;
     }
 
+    @NotNull
     @Override
     public String toString() {
         return "Contact{" +

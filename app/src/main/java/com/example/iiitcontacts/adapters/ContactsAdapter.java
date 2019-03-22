@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import com.example.iiitcontacts.BR;
 import com.example.iiitcontacts.R;
 import com.example.iiitcontacts.databinding.ItemContactBinding;
-import com.example.iiitcontacts.pojo.Contact;
+import com.example.iiitcontacts.localdb.Contact;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -48,6 +48,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
 
     public void setData(List<Contact> newData) {
         mDataset = newData;
+        notifyDataSetChanged();
     }
 
 

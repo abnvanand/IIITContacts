@@ -3,36 +3,28 @@ package com.example.iiitcontacts;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.iiitcontacts.adapters.ContactsAdapter;
 import com.example.iiitcontacts.databinding.ActivityMainBinding;
 import com.example.iiitcontacts.databinding.ItemContactBinding;
-import com.example.iiitcontacts.network.OkHttp;
-import com.example.iiitcontacts.pojo.Contact;
+import com.example.iiitcontacts.localdb.Contact;
 import com.example.iiitcontacts.util.Constants;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import com.example.iiitcontacts.viewmodels.ContactViewModel;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity
         implements ContactsAdapter.OnItemClickListener {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,33 +39,9 @@ public class MainActivity extends AppCompatActivity
         mAdapter.setItemClickListener(this);
         binding.recyclerView.setAdapter(mAdapter);
 
-        OkHttpClient client = OkHttp.getInstance();
-
-        Request request = new Request.Builder()
-                .url(Constants.API_URL)
-                .build();
-
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                Timber.e(e);
-            }
-
-            @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                String responseString = response.body().string();
-
-                Timber.d("Response data: %s", responseString);
-
-                ArrayList<Contact> contactList = new Gson().fromJson(responseString,
-                        new TypeToken<List<Contact>>() {
-                        }.getType());
-                Timber.d("Contactlist: %s", contactList);
-
-                mAdapter.setData(contactList);
-                runOnUiThread(mAdapter::notifyDataSetChanged);
-            }
-        });
+        ContactViewModel mContactViewModel = ViewModelProviders.of(this).get(ContactViewModel.class);
+        // Update the cached copy of the contacts in the adapter.
+        mContactViewModel.getAllContacts().observe(this, mAdapter::setData);
     }
 
     @Override

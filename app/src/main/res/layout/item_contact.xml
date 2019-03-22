@@ -7,7 +7,7 @@
 
         <variable
             name="contact"
-            type="com.example.iiitcontacts.pojo.Contact" />
+            type="com.example.iiitcontacts.localdb.Contact" />
     </data>
 
     <FrameLayout

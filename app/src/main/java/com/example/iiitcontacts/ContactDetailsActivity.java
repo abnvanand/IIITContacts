@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.iiitcontacts.databinding.ActivityContactDetailsBinding;
-import com.example.iiitcontacts.pojo.Contact;
+import com.example.iiitcontacts.localdb.Contact;
 import com.example.iiitcontacts.util.Constants;
 
 import androidx.appcompat.app.AppCompatActivity;
