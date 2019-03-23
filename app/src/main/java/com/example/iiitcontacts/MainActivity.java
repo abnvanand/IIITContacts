@@ -12,14 +12,13 @@ import com.example.iiitcontacts.util.Constants;
 import com.example.iiitcontacts.viewmodels.ContactViewModel;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 public class MainActivity extends AppCompatActivity
@@ -33,6 +32,10 @@ public class MainActivity extends AppCompatActivity
 
         binding.recyclerView.setHasFixedSize(true);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this,
+                LinearLayoutManager.VERTICAL);
+        binding.recyclerView.addItemDecoration(dividerItemDecoration);
+
         ArrayList<Contact> contactList = new ArrayList<>();
 
         ContactsAdapter mAdapter = new ContactsAdapter(contactList);

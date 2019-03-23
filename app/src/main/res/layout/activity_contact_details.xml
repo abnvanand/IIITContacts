@@ -18,8 +18,7 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -57,124 +56,133 @@
 
                 </RelativeLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="395dp"
-                    android:layout_height="wrap_content"
-                    tools:layout_editor_absoluteX="8dp"
-                    tools:layout_editor_absoluteY="104dp">
+                <LinearLayout
+                    android:layout_margin="12dp"
+                    android:padding="8dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="395dp"
                         android:layout_height="wrap_content"
-                        android:clickable="false"
-                        android:focusable="false"
-                        android:hint="Designation"
-                        android:inputType="none"
-                        android:text="@{contact.designation}"
-                        tools:text="Professor" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        tools:layout_editor_absoluteX="8dp"
+                        tools:layout_editor_absoluteY="104dp">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="395dp"
-                    android:layout_height="wrap_content"
-                    tools:layout_editor_absoluteX="8dp"
-                    tools:layout_editor_absoluteY="185dp">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:hint="Designation"
+                            android:inputType="none"
+                            android:text="@{contact.designation}"
+                            tools:text="Professor" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="395dp"
                         android:layout_height="wrap_content"
-                        android:clickable="false"
-                        android:focusable="false"
-                        android:hint="Research Center/Office"
-                        android:inputType="none"
-                        android:text="@{contact.office}"
-                        tools:text="CVIT" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        tools:layout_editor_absoluteX="8dp"
+                        tools:layout_editor_absoluteY="185dp">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="395dp"
-                    android:layout_height="wrap_content"
-                    tools:layout_editor_absoluteX="8dp"
-                    tools:layout_editor_absoluteY="268dp">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:hint="Research Center/Office"
+                            android:inputType="none"
+                            android:text="@{contact.office}"
+                            tools:text="CVIT" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="395dp"
                         android:layout_height="wrap_content"
-                        android:clickable="false"
-                        android:focusable="false"
-                        android:hint="Extn. No"
-                        android:inputType="none"
-                        android:text="@{contact.extn}"
-                        tools:text="4484" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        tools:layout_editor_absoluteX="8dp"
+                        tools:layout_editor_absoluteY="268dp">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="395dp"
-                    android:layout_height="wrap_content"
-                    tools:layout_editor_absoluteX="8dp"
-                    tools:layout_editor_absoluteY="355dp">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:hint="Extn. No"
+                            android:inputType="none"
+                            android:text="@{contact.extn}"
+                            tools:text="4484" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="395dp"
                         android:layout_height="wrap_content"
-                        android:clickable="false"
-                        android:focusable="false"
-                        android:hint="Mobile"
-                        android:inputType="none"
-                        android:text="@{contact.mobile}"
-                        tools:text="987654321" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        tools:layout_editor_absoluteX="8dp"
+                        tools:layout_editor_absoluteY="355dp">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="395dp"
-                    android:layout_height="wrap_content"
-                    tools:layout_editor_absoluteX="8dp"
-                    tools:layout_editor_absoluteY="433dp">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:hint="Mobile"
+                            android:inputType="none"
+                            android:text="@{contact.mobile}"
+                            tools:text="987654321" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="395dp"
                         android:layout_height="wrap_content"
-                        android:clickable="false"
-                        android:focusable="false"
-                        android:hint="Mail Id"
-                        android:inputType="none"
-                        android:text="@{contact.email}"
-                        tools:text="john.doe@gmail.com" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        tools:layout_editor_absoluteX="8dp"
+                        tools:layout_editor_absoluteY="433dp">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="395dp"
-                    android:layout_height="wrap_content"
-                    tools:layout_editor_absoluteX="8dp"
-                    tools:layout_editor_absoluteY="516dp">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:hint="Mail Id"
+                            android:inputType="none"
+                            android:text="@{contact.email}"
+                            tools:text="john.doe@gmail.com" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="395dp"
                         android:layout_height="wrap_content"
-                        android:clickable="false"
-                        android:focusable="false"
-                        android:hint="Room No"
-                        android:inputType="none"
-                        android:text="@{contact.roomNo}"
-                        tools:text="B6-205" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        tools:layout_editor_absoluteX="8dp"
+                        tools:layout_editor_absoluteY="516dp">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="395dp"
-                    android:layout_height="wrap_content"
-                    tools:layout_editor_absoluteX="8dp"
-                    tools:layout_editor_absoluteY="516dp">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:hint="Room No"
+                            android:inputType="none"
+                            android:text="@{contact.roomNo}"
+                            tools:text="B6-205" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="395dp"
                         android:layout_height="wrap_content"
-                        android:clickable="false"
-                        android:focusable="false"
-                        android:hint="Category"
-                        android:inputType="none"
-                        android:text="@{contact.category}"
-                        tools:text="Faculty" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        tools:layout_editor_absoluteX="8dp"
+                        tools:layout_editor_absoluteY="516dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:hint="Category"
+                            android:inputType="none"
+                            android:text="@{contact.category}"
+                            tools:text="Faculty" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
             </LinearLayout>
         </ScrollView>
 

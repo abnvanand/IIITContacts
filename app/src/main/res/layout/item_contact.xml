@@ -12,37 +12,43 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="88dp"
+        android:background="?selectableItemBackground"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        tools:background="#e0e0e0">
 
         <ImageView
-            app:avatar="@{contact.image}"
+            android:layout_margin="12dp"
             android:layout_width="48dp"
-            android:layout_height="match_parent"
-            android:src="@android:mipmap/sym_def_app_icon" />
+            android:layout_height="48dp"
+            android:scaleType="fitXY"
+            android:src="@android:mipmap/sym_def_app_icon"
+            app:avatar="@{contact.image}" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="56dp"
+            android:layout_marginStart="72dp"
             android:layout_marginLeft="56dp"
+            android:layout_marginTop="10dp"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{contact.name}"
-                android:textAppearance="?textAppearanceListItemSmall"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:ellipsize="end"
                 tools:text="John Doe" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{contact.extn}"
-                android:textAppearance="?textAppearanceListItemSmall"
-                tools:text="1234" />
+                android:text='@{ "Extn: " + contact.extn}'
+                tools:text="Extn: 1234" />
         </LinearLayout>
     </FrameLayout>
 

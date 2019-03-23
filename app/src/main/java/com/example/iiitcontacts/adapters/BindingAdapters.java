@@ -17,7 +17,7 @@ public class BindingAdapters {
             .showImageForEmptyUri(R.drawable.ic_launcher_foreground)
             .cacheInMemory(true)
             .cacheOnDisk(true)
-            .displayer(new RoundedBitmapDisplayer(128))
+            .displayer(new RoundedBitmapDisplayer(1000))
             .build();
 
     private static DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder()
