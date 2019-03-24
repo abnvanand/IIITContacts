@@ -14,12 +14,12 @@ import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 
 public class ContactRepository {
-    private LiveData<List<Contact>> mAllContacts;
+    private ContactDao mContactDao;
 
     public ContactRepository(Application application) {
+        // Get database
         MyRoomDatabase db = MyRoomDatabase.getDatabase(application);
-        ContactDao mContactDao = db.contactDao();
-        mAllContacts = mContactDao.getAll();
+        mContactDao = db.contactDao();
 
 
         // background worker to fetch contacts from the network
@@ -31,6 +31,20 @@ public class ContactRepository {
 
 
     public LiveData<List<Contact>> getAllContacts() {
+        LiveData<List<Contact>> mAllContacts;
+        mAllContacts = mContactDao.getAll();
+
         return mAllContacts;
+    }
+
+    public LiveData<List<Contact>> getContactsByName(String name) {
+        // Add % to front and back so that the query becomes something like
+        // SELECT * FROM tablename WHERE fieldname LIKE %name%
+        // We are doing this here bcoz Room does not support adding %% in the query part of DAO.
+        String query = String.format("%s%s%s", "%", name, "%");
+        LiveData<List<Contact>> mFilteredContacts;
+        mFilteredContacts = mContactDao.findByName(query);
+
+        return mFilteredContacts;
     }
 }
